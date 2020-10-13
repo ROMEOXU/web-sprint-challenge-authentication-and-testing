@@ -6,7 +6,7 @@
 const jwt = require('jsonwebtoken');
 
 function restrict(level){
-  const roles =['basic','admin','romeo']
+  const roles =['basic','admin','romeo']; 
     return async (req,res,next)=>{
   const authError = {
       message:'invalid creentials'

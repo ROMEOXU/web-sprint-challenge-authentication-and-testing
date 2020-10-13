@@ -13,7 +13,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
-server.use('/api/jokes', authenticate, jokesRouter);
+server.use('/api/jokes', authenticate('basic'), jokesRouter);
 server.get("/", (req, res) => {
     res.send({
       Greeting: "Greetings from Romeo"
