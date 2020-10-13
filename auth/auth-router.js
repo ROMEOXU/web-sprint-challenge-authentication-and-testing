@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Users = require('../user-model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const restrict = require('./authenticate-middleware');
 
 router.use((err,req,res,next)=>{
   res.status(500).json({
@@ -65,5 +65,13 @@ router.post('/login', async (req, res) => {
   }
   
 });
+
+router.get('/users',restrict('admin'),async (req,res,next)=>{
+  try{
+      res.status(201).json( await Users.find())}
+  catch(err){
+      next(err)
+  }
+ })
 
 module.exports = router;
